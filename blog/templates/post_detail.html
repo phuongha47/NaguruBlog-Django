@@ -1,9 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="post-entry">
-    <h2>{{ post.title }}</h2>
-    <p>{{ post.body }}</p>
-</div>
+
+<h1>{{ post.title }}</h1>
+<small>
+    By:
+    {{post.author}} -
+    {{post.post_date}}
+</small>
+<p>{{ post.body |safe }}</p>
 <p><a href="{% url 'post_edit' post.pk %}">+ Edit Blog Post</a></p>
 <p><a href="{% url 'post_delete' post.pk %}">+ Delete Blog Post</a></p>
+<form action="{%url 'like_post' post.pk %}" method="POST">
+    {%csrf_token%}
+    <button type="submit", name= "post_id", values="{{post.id}}">Like</button>
+</form>
 {% endblock content %}

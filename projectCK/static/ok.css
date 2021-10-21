@@ -1,0 +1,33 @@
+
+.body{
+    margin-top: 100px;
+    background-color: #e6f5ff;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+}
+
+.title{
+    text-align: center;
+}
+
+.date{
+    text-align: center;
+    font-style: italic;
+    color: rgb(161, 170, 180);
+}
+
+.button {
+    /*background-color: #6587f5;  Green */
+    background-color: #e6f5ff;
+    border: none;
+    color: white;
+    padding: 7px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }

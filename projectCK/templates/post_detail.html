@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static%}
+    <link rel="stylesheet" href="{% static 'post_detail.css' %}">
+
+</head>
+
+<body class="body">
+    <header>
+        <div class="container">
+            <div class="row">
+                <a class="button" href="{%url 'blog' %}">Back</a>
+                <p class="date"> {{ post.post_date }}</p>
+                <h1 class="title">{{ post.title }}</h1>
+                <hr>
+                <p class="naiyou">
+                    <br>
+                    {%if post.header_image%}
+                    <img width="400px" height="300px" src="{{post.header_image.url}}" alt="">
+                    {%endif%}
+                    <br>
+                <p>{{ post.body|linebreaks }}</p>
+                </p>
+                <h2>Comments...</h2>
+                {%if not post.comments.all%}
+                No Comments Yet... 
+                {%else%}
+                {%for comment in post.comments.all%}
+                <strong>
+                    {{comment.name}} -
+                    {{comment.date_added}}
+                </strong>
+                <br>
+                {{comment.body}}
+                {%endfor%}
+                {%endif%}
+                <a href="url 'add_comment' post.pk">
+                    Add One </a>
+
+                <p class="fa fa-male" id='i1'> {{ post.author }} </p>
+                <br>
+                <button onclick="onClick()">Like</button>
+                <p id="like">{{object.likes}}</p>
+                <a href="{%url 'post_edit' post.pk %}">Edit</a>
+                <a href="{%url 'post_delete' post.pk %}">Delete</a>
+            </div>
+        </div>
+    </header>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static%}
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+</head>
+
+<body class= "post">
+{% if user.is_authenticated %}
+	<p>Hi {{ user.username }}!</p>
+	<p><a href="{% url 'logout' %}">Log out</a></p>
+	<div class="nav-right">  <a href="{% url 'post_new' %}">+ New Blog Post</a></div>
+
+    {% for post in object_list %}
+    <h2 class><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
+    <div class="img-text">
+        {%if post.header_image%}
+        <img class ="trai" style="float:left" width="400px" height="300px" src="{{post.header_image.url}}" alt="">
+        <p style="width: 70%; float:right" class="right">{{ post.body | slice:":200" | safe}}</p>
+        {%else%}
+        <p >{{ post.body | slice:":200" | safe}}</p>
+        {%endif%}        
+    </div>
+    {% endfor %}
+
+{% else %}
+	<p>You are not logged in.</p>
+	<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;"><a href="{% url 'signup' %}">Sign Up</a></button>
+	<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;"><a href="{% url 'login' %}">Login</a></button>
+{% endif %}
+</body>
+</html>
+
+{% endblock content %}

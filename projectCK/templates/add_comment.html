@@ -1,0 +1,15 @@
+
+{% block content %}
+{% block content %}Comment On Blog Post
+{%endblock%}
+
+<h1>Add Comment...</h1>
+<br>
+<div>
+    <form class= "from-group" action="">
+        {%csrf_token%}
+        {{form.media}}
+        {{form.as_p}}
+        <button>Comment</button>
+    </form>
+</div>
